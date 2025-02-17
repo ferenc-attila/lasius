@@ -1,7 +1,10 @@
-val h2_version: String by project
-val kotlin_version: String by project
-val logback_version: String by project
-val postgres_version: String by project
+val kotlinVersion: String by project
+val ktorVersion: String by project
+val logbackVersion: String by project
+val postgresVersion: String by project
+val kotlinCoroutinesVersion: String by project
+val mockkVersion: String by project
+val rateLimitingVersion: String by project
 
 plugins {
     kotlin("jvm") version "2.1.10"
@@ -32,17 +35,23 @@ dependencies {
     implementation("io.ktor:ktor-server-sessions")
     implementation("io.ktor:ktor-server-cors")
     implementation("io.ktor:ktor-server-websockets")
-    implementation("io.github.flaxoos:ktor-server-rate-limiting:2.1.2")
-    implementation("org.postgresql:postgresql:$postgres_version")
-    implementation("com.h2database:h2:$h2_version")
+    implementation("io.github.flaxoos:ktor-server-rate-limiting:$rateLimitingVersion")
+    implementation("org.postgresql:postgresql:$postgresVersion")
     implementation("io.ktor:ktor-server-swagger")
     implementation("io.ktor:ktor-server-host-common")
     implementation("io.ktor:ktor-server-compression")
     implementation("io.ktor:ktor-server-status-pages")
     implementation("io.ktor:ktor-server-call-logging")
     implementation("io.ktor:ktor-server-netty")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.ktor:ktor-server-config-yaml")
+    implementation("io.ktor:ktor-server-auth:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jwt:$ktorVersion")
+    implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
     testImplementation("io.ktor:ktor-server-test-host")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesVersion")
 }
